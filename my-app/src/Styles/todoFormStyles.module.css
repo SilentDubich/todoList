@@ -1,0 +1,16 @@
+.container_commonLookInput__largeInput {
+    width: 25rem;
+    box-shadow: 0 0 .2rem #606060;
+    border: none;
+    border-radius: .25rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.container_commonLookInput__largeInput:focus {
+    outline: none;
+}
+.container_commonLookInput__largeInput:focus::placeholder {
+    transition: .25s;
+    opacity: .25;
+}
+

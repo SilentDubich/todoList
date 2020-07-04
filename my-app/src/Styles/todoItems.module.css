@@ -1,0 +1,16 @@
+.container_textBody__greenCompleted {
+    background: #00ff00;
+    transition: .25s;
+}
+.container_textBody__whiteNotCompleted {
+    background: #fff;
+    transition: .25s;
+}
+
+.container_commonLookTask__large {
+    width: 25rem;
+    box-shadow: 0 0 .2rem #606060;
+    border: none;
+    border-radius: .25rem;
+    padding: 0 .5rem;
+}

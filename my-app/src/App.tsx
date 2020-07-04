@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import {TodoForm} from "./Components/todoForm";
 import {TaskType, TodoList} from "./Components/todoList";
+import Common from "./Styles/common.module.css"
+import {FilterButtons} from "./Components/filter";
 
 function App() {
     let storage: any = []
@@ -13,6 +15,7 @@ function App() {
     if (id) id = +id
     const [tasks, setTasks] = useState<Array<TaskType>>(storage)
     const [idCounter, setIdCounter] = useState(id)
+    const [filtered, setFiltered] = useState<boolean | null>(null)
     const addTask = (task: string) => {
         setTasks([...tasks, {id: idCounter, body: task, isCompleted: false}])
         setIdCounter(idCounter + 1)
@@ -27,10 +30,16 @@ function App() {
         setTasks(tasks.map(el => el.id === id ? {id: el.id, body: el.body, isCompleted: isComplete} : el))
         localStorage.setItem('tasks', JSON.stringify(tasks.map(el => el.id === id ? {id: el.id, body: el.body, isCompleted: isComplete} : el)))
     }
+    const filter = (state: boolean | null) => {
+        setFiltered(state)
+    }
   return (
-    <div>
-      <TodoForm addTask={addTask}/>
-      <TodoList setComplete={setComplete} deleteTask={deleteTask} list={tasks}/>
+    <div className={Common.container}>
+        <div className={Common.container_items__marginAuto}>
+            <FilterButtons filter={filter} filtered={filtered}/>
+            <TodoForm  addTask={addTask}/>
+            <TodoList filtered={filtered} setComplete={setComplete} deleteTask={deleteTask} list={tasks}/>
+        </div>
     </div>
   );
 }
